@@ -5,7 +5,7 @@ import moxios from 'moxios';
 
 import * as actions from '../actions';
 
-import { allDragonsMock, callHumanMock, getRandomDragonMock } from '../../mocks';
+import { allDragonsMock, callHumanMock, getRandomDragonMock } from '../../__mocks__';
 
 const middlewares = [promise];
 const mockStore = configureStore(middlewares);
