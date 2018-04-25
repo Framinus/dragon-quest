@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { callHuman, clearFightingDragon, saveHuman, updateHuman, updateDragon } from '../actions'
+import { callHuman, clearFightingDragon, saveHuman, updateHumanHP, updateDragonHP } from '../actions'
 import { nextLevelStatValue } from '../helpers';
 import DragonCard from './dragon_card';
 import EnterBattleBtn from '../components/enterBattleBtn';
@@ -173,10 +173,14 @@ class Fight extends Component {
   * @returns {undefined} - function calls another function and returns nothing.
   */
 
+  // updateDragonStats(hp) {
+  //   const dragonAfterDamage = Object.assign(this.props.fightingDragon, {currenthp: hp});
+  //   this.props.updateDragon(dragonAfterDamage);
+  // };
+
   updateDragonStats(hp) {
-    const dragonAfterDamage = Object.assign(this.props.fightingDragon, {currenthp: hp});
-    this.props.updateDragon(dragonAfterDamage);
-  };
+    this.props.updateDragonHP(hp);
+  }
 
 
   /**
@@ -185,8 +189,7 @@ class Fight extends Component {
   */
 
   updateHumanStats(hp) {
-    const humanAfterDamage = Object.assign(this.props.human, {currenthp: hp});
-    this.props.updateHuman(humanAfterDamage);
+    this.props.updateHumanHP(hp);
   };
 
   // View functions:
@@ -280,12 +283,12 @@ Fight.propTypes = {
   gameOver: PropTypes.bool,
   human: PropTypes.object,
   saveHuman: PropTypes.func,
-  updateDragon: PropTypes.func,
-  updateHuman: PropTypes.func,
+  updateDragonHP: PropTypes.func,
+  updateHumanHP: PropTypes.func,
 }
 
 function mapStateToProps({ fightingDragon, human}) {
   return { fightingDragon, human };
 };
 
-export default connect(mapStateToProps, { callHuman, clearFightingDragon, saveHuman, updateDragon, updateHuman})(Fight);
+export default connect(mapStateToProps, { callHuman, clearFightingDragon, saveHuman, updateDragonHP, updateHumanHP})(Fight);

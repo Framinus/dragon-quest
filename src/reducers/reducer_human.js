@@ -7,7 +7,7 @@ export default function (state={}, action) {
     case SAVE_NEW_HUMAN:
       return action.payload
     case UPDATE_HUMAN_HP:
-      return action.payload
+      return Object.assign({}, state, {currenthp: action.payload})
     default: return state;
   }
 }
