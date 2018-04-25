@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView component should match its empty snapshot 1`] = `
+<div
+  className="main-view-container"
+>
+  <div
+    className="dragon-collection-description"
+  >
+    <div
+      className="control-btns"
+    >
+      <span>
+        <button
+          className="btn btn-success"
+          id="dragon-call-btn"
+          onClick={undefined}
+        >
+          Call Dragon
+        </button>
+      </span>
+      <span>
+        <button
+          className="btn btn-info"
+          id="dragon-merge-btn"
+          onClick={undefined}
+        >
+          Merge Mode
+        </button>
+      </span>
+    </div>
+  </div>
+  <div
+    className="carousel"
+  >
+    <div>
+      <div>
+        <h4>
+          No dragons here!
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
+`;

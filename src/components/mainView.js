@@ -6,7 +6,7 @@ import PrepareToMergeBtn from './prepareToMergeBtn';
 
 export default function MainView(props) {
   return (
-    <div>
+    <div className="main-view-container">
       <div className="dragon-collection-description">
         <div className="control-btns">
           <CallDragonBtn

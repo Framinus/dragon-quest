@@ -5,6 +5,8 @@ import enzyme, { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import promise from 'redux-promise';
+import renderer from 'react-test-renderer';
+import toJSON from 'enzyme-to-json';
 import ConnectedApp from '../App';
 import reducers from '../reducers';
 import { App } from '../App';
@@ -27,9 +29,6 @@ describe('App component', () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
-})
-
-describe('App', () => {
 
   const wrapper = shallow(< App />);
 
@@ -37,5 +36,17 @@ describe('App', () => {
     expect(wrapper.is('.App')).toBe(true);
   });
 
-  
+  it('should render a MainView component', () => {
+    expect(wrapper.find('.MainView')).toHaveLength(1);
+  });
+
+  it('should match its empty snapshot', () => {
+    const tree = renderer.create(
+      <Provider store={createStoreWithMiddleware} >
+        <ConnectedApp />
+      </Provider>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 })

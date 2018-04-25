@@ -133,6 +133,7 @@ export class App extends Component {
     if (!this.state.randomDragonIsVisible && !this.state.fightMode && !this.state.mergeContainerIsVisible && !this.state.gameOver) {
       return (
         <MainView
+          className="MainView"
           store={this.props.store}
           callDragon={this.callDragon}
           randomDragonIsVisible={this.state.randomDragonIsVisible}
@@ -159,6 +160,7 @@ export class App extends Component {
       return (
         <div>
           <MergeContainer
+            className="MergeContainer"
             toggleMergeContainer={this.toggleMergeContainer}
             toggleMergeMode={this.toggleMergeMode}
            />
