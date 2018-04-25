@@ -7,25 +7,27 @@ import * as types from '../actions';
 import reducerNewDragon from '../reducers/reducer_new_dragon.js';
 import reducerRandomDragon from '../reducers/reducer_random_dragon.js';
 
-const fakeDragonArray = [
-  {
-    type: 'red',
-    level: 1,
-    currenthp: 10,
-    maxhp: 10,
-    strength: 10,
-    defense: 10,
-    imageurl: 'fake.com/fake.png',
-  }
-];
-
 const fakeDragon = {
-  type: 'red',
+  dragonId: 1,
+  type: 'orange',
+  level: 2,
+  currenthp: 20,
+  maxhp: 20,
+  strength: 20,
+  defense: 20,
+  imageurl: 'fake.com/fake.png',
+};
+
+const fakeDragonArray = [fakeDragon];
+
+const fakeNewDragon = {
+  dragonId: 2,
+  type: 'blue',
   level: 1,
-  currenthp: 10,
-  maxhp: 10,
-  strength: 10,
-  defense: 10,
+  currenthp: 12,
+  maxhp: 12,
+  strength: 12,
+  defense: 12,
   imageurl: 'fake.com/fake.png',
 };
 
@@ -54,38 +56,35 @@ describe('all dragons reducer', () => {
     expect(reducerAllDragons([], {
       type: types.GET_DRAGON_LIST,
       payload: fakeDragonArray,
-    })).toEqual([
-      {
-        type: 'red',
-        level: 1,
-        currenthp: 10,
-        maxhp: 10,
-        strength: 10,
-        defense: 10,
-        imageurl: 'fake.com/fake.png',
-      }
-    ])
+    })).toEqual(fakeDragonArray);
   });
 });
 
 describe('dragons reducer', () => {
+  const expectedDragons = [fakeDragon, fakeNewDragon];
   it('should return the initial state', () => {
     expect(reducerDragons(undefined, {})).toEqual([]);
   });
   it('should return an array with one additional dragon if case ADD_DRAGON is used', () => {
-    expect(reducerDragons([], {
+    expect(reducerDragons(fakeDragonArray, {
       type: types.ADD_DRAGON,
-      payload: fakeDragon,
-    })).toEqual([
-      fakeDragon
-    ])
+      payload: fakeNewDragon,
+    })).toEqual(expect.arrayContaining(expectedDragons));
   });
-  it('should return an empty array if case REMOVE_DRAGON is passed in', () => {
+  it('should return an empty array if case REMOVE_DRAGON is passed in and starting array only contains one item', () => {
     expect(reducerDragons(fakeDragonArray, {
       type: types.REMOVE_DRAGON,
       payload: fakeDragon,
-    })).toEqual([])
-  })
+    })).toEqual([]);
+  });
+  it('should return an array of one that does not contain the fakeDragon if case REMOVE_DRAGON is passed in and starting array had two dragons', () => {
+    const newDragonArray = [fakeDragon, fakeNewDragon];
+    const expected = [fakeNewDragon];
+    expect(reducerDragons(newDragonArray, {
+      type: types.REMOVE_DRAGON,
+      payload: fakeDragon,
+    })).toEqual(expected);
+  });
 });
 
 describe('fightingDragon reducer', () => {
@@ -105,9 +104,10 @@ describe('fightingDragon reducer', () => {
     })).toEqual(fakeDragon);
   });
   it('should change the hp of the fightingDragon in state if UPDATE_DRAGON_HP is the type passed in', () => {
+    const hp = 5;
     expect(reducerFightingDragon(fakeDragon, {
       type: types.UPDATE_DRAGON_HP,
-      payload: injuredDragon,
+      payload: hp,
     })).toEqual(injuredDragon);
   });
 });
@@ -128,10 +128,11 @@ describe('reducerHuman', () => {
       payload: strongerHuman,
     })).toEqual(strongerHuman);
   });
-  it('should replace the current human in state with the updated version when type UPDATE_HUMAN_HP is passed in', () => {
+  it('should change the hp of the human in state if UPDATE_HUMAN_HP is the type passed in', () => {
+    const hp = 2;
     expect(reducerHuman(fakeHuman, {
       type: types.UPDATE_HUMAN_HP,
-      payload: injuredHuman,
+      payload: hp,
     })).toEqual(injuredHuman);
   });
 });

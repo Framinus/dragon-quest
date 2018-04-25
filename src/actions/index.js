@@ -227,10 +227,10 @@ export function saveHuman(human) {
 *
 */
 
-export function updateHuman(human) {
+export function updateHumanHP(humanHP) {
   return {
     type: UPDATE_HUMAN_HP,
-    payload: human,
+    payload: humanHP,
   }
 }
 
@@ -242,9 +242,9 @@ export function updateHuman(human) {
 *
 */
 
-export function updateDragon(dragon) {
+export function updateDragonHP(dragonHP) {
   return {
     type: UPDATE_DRAGON_HP,
-    payload: dragon,
+    payload: dragonHP,
   }
 }
