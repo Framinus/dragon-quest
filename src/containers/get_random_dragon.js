@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToUserDragons, clearRandomDragon, getRandomDragon } from '../actions';
 import { generateRandomNumber } from '../helpers';
 import DragonCard from '../containers/dragon_card.js';
-import './get_random_dragon.css';
+import '../style/get_random_dragon.css';
 
 class GetRandomDragon extends Component {
   constructor(props) {

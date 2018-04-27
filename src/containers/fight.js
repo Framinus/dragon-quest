@@ -8,7 +8,7 @@ import EnterBattleBtn from '../components/enterBattleBtn';
 import FightIntroText from '../components/fightIntroText';
 import HumanCard from '../components/human_card';
 import ReturnBtn from '../components/returnBtn';
-import './fightMode.css';
+import '../style/fightMode.css';
 
 class Fight extends Component {
   constructor(props) {
@@ -221,12 +221,28 @@ class Fight extends Component {
         <FightIntroText
           winner={this.state.winner}
         />
-        <h3>{this.state.winner}</h3>
+        <h3 className="battle-winner-text">{this.state.winner}</h3>
         <ReturnBtn
           winner={this.state.winner}
           toggleFightMode={this.props.toggleFightMode}
         />
+        <EnterBattleBtn
+          battleHasStarted={this.state.battleHasStarted}
+          enterBattle={this.enterBattle}
+        />
         <div className="fight-container">
+          <div className="fight-card">
+            <HumanCard
+              winner={this.state.winner}
+              style={{backgroundColor: this.state.humanCardBackGround}}
+              imageurl={this.props.human.imageurl}
+              level={this.props.human.level}
+              currenthp={this.props.human.currenthp}
+              maxhp={this.props.human.maxhp}
+              strength={this.props.human.strength}
+              defense={this.props.human.defense}
+            />
+          </div>
           <div className="fight-card">
             <DragonCard
               style={{backgroundColor: this.state.dragonCardBackGround}}
@@ -240,21 +256,7 @@ class Fight extends Component {
               toggleFightMode={this.props.toggleFightMode}
             />
           </div>
-          <HumanCard
-            winner={this.state.winner}
-            style={{backgroundColor: this.state.humanCardBackGround}}
-            imageurl={this.props.human.imageurl}
-            level={this.props.human.level}
-            currenthp={this.props.human.currenthp}
-            maxhp={this.props.human.maxhp}
-            strength={this.props.human.strength}
-            defense={this.props.human.defense}
-          />
         </div>
-        <EnterBattleBtn
-          battleHasStarted={this.state.battleHasStarted}
-          enterBattle={this.enterBattle}
-        />
       </div>
     )
   }
