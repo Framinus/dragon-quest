@@ -16,7 +16,7 @@ export const SPAWN_HUMAN = 'SPAWN_HUMAN';
 export const UPDATE_HUMAN_HP = 'UPDATE_HUMAN_HP';
 export const UPDATE_DRAGON_HP = 'UPDATE_DRAGON_HP';
 
-const ROOT_URL = `https://dragon-game-api.herokuapp.com`;
+const ROOT_URL = `https://dragons-game-api.herokuapp.com`;
 
 // action creators that pull from the api:
 

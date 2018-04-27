@@ -10,7 +10,7 @@ import { allDragonsMock, callHumanMock, getRandomDragonMock } from '../../__mock
 const middlewares = [promise];
 const mockStore = configureStore(middlewares);
 
-const ROOT_URL = `https://dragon-game-api.herokuapp.com`;
+const ROOT_URL = `https://dragons-game-api.herokuapp.com`;
 
 const testDragon = {
   type: 'red',
