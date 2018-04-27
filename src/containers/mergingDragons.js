@@ -11,9 +11,9 @@ export default function MergingDragons(props) {
   if (!props.shinyNewDragon.type) {
     return (
       <div className="merge-container">
-        <p>Merging dragons is an irreversible and slightly unpredictable action. The two dragons you have selected will disappear forever and be replaced with one new dragon whose level will be guaranteed to be at least one level higher than your LOWEST LEVEL dragon. You may simply get a stronger version of what you already have, or if you're lucky, you may get a special dragon with the combined powers of the previous two!</p>
+        <p className="merge-warning-text">Merging dragons is an irreversible and slightly unpredictable action. The two dragons you have selected will disappear forever and be replaced with one new dragon whose level will be guaranteed to be at least one level higher than your LOWEST LEVEL dragon. You may simply get a stronger version of what you already have, or if you're lucky, you may get a special dragon with the combined powers of the previous two!</p>
         <button className="btn btn-success" onClick={props.createSuperDragon}>Let's Do This!</button>
-        <button className="btn btn-danger">Changed My Mind!</button>
+        <button className="btn btn-danger" onClick={props.toggleMergeContainer}>Changed My Mind!</button>
         <div className="dragons-to-merge">
           {props.mergingDragons.map(dragon =>
             <DragonCard
