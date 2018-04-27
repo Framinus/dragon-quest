@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Spinner from 'react-spinkit';
 import './style/App.css';
 import FightView from './components/fightView';
 import GameOverScreen from './components/GameOverScreen';
