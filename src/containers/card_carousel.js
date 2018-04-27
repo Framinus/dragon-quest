@@ -75,7 +75,7 @@ class ControlledCarousel extends Component {
     } else {
       dragonList = (
         <div>
-          <h4>No dragons here!</h4>
+          <h4>You don't have any dragons here. Why don't you call one?</h4>
         </div>
       )
     }
