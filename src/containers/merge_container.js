@@ -149,6 +149,7 @@ class MergeContainer extends Component {
           createSuperDragon={this.createSuperDragon}
           mergingDragons={this.props.mergingDragons}
           shinyNewDragon={this.props.shinyNewDragon}
+          toggleMergeContainer={this.props.toggleMergeContainer}
         />
         <NewDragon
           returnToVillage={this.returnToVillage}
