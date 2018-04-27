@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../style/human_card.css';
 
-const HumanCard = (props) => {
+export default function HumanCard (props) {
   if (props.winner === null) {
     return (
       <div className="human-card">
@@ -27,6 +27,4 @@ HumanCard.propTypes = {
   maxhp: PropTypes.number,
   strength: PropTypes.number,
   winner: PropTypes.string,
-}
-
-export default HumanCard;
+};
