@@ -3,21 +3,21 @@
 }
 
 .main-title {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .dragon-collection-description {
-  margin: 20px;
+  margin: 10px;
 }
 
 .dragon-card-container {
   background-color: #000;
   border: 1px solid grey;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #fff;
   font-size: 18px;
   height: 400px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px 10px;
   width: 300px;
 }
@@ -31,4 +31,22 @@
 
 .control-btns .btn {
   margin: 0 4px;
+}
+
+
+
+@media (min-width: 600px) {
+
+  .dragon-collection-description {
+    margin: 20px;
+  }
+
+  .dragon-card-container {
+    margin: 20px auto;
+  }
+
+  .main-title {
+    margin-bottom: 40px;
+  }
+
 }

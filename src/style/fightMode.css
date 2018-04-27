@@ -1,0 +1,36 @@
+h3 {
+  margin: 0;
+}
+
+.fight-intro-text {
+  margin: 2px;
+}
+
+.battle-winner-text {
+  margin: 10px auto;
+}
+
+.fight-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fight-card {
+  margin: 0 5px;
+}
+
+@media (min-width: 600px) {
+
+  .fight-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 30%;
+  }
+
+  .fight-intro-text {
+    margin: 20px;
+  }
+
+}

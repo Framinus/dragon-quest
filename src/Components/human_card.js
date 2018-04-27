@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './human_card.css';
+import '../style/human_card.css';
 
 const HumanCard = (props) => {
   if (props.winner === null) {
     return (
-      <div className="fight-card">
-        <div className="human-card">
-          <img className="human-card-image" alt="guy in smiley t-shirt" src={props.imageurl} />
-          <h4>Human</h4>
-          <p>Level: {props.level}</p>
-          <p>HP: {props.currenthp} / {props.maxhp}</p>
-          <p>Strength: {props.strength}</p>
-          <p>Defense: {props.defense}</p>
-        </div>
+      <div className="human-card">
+        <img className="human-card-image" alt="guy in smiley t-shirt" src={props.imageurl} />
+        <h4>Human</h4>
+        <p>Level: {props.level}</p>
+        <p>HP: {props.currenthp} / {props.maxhp}</p>
+        <p>Strength: {props.strength}</p>
+        <p>Defense: {props.defense}</p>
       </div>
+
     );
   }
   return null;

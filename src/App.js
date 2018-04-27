@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import './style/App.css';
 import FightView from './components/fightView';
 import GameOverScreen from './components/GameOverScreen';
 import HelpText from './components/helpText';

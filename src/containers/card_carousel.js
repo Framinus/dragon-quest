@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/lib/Carousel';
 import DragonCard from '../containers/dragon_card.js';
 import { addToUserDragons } from '../actions/';
 import { generateRandomNumber } from '../helpers';
-import './card_carousel.css';
+import '../style/card_carousel.css';
 
 class ControlledCarousel extends Component {
   constructor(props, context) {
@@ -75,7 +75,13 @@ class ControlledCarousel extends Component {
     } else {
       dragonList = (
         <div>
-          <h4>You don't have any dragons here. Why don't you call one?</h4>
+          <h4 className="no-dragons-text">
+            You don't have any dragons here. Why don't you call one?
+          </h4>
+          <img
+            className="no-dragons-image"
+            src="/images/no-dragons.png"
+          />
         </div>
       )
     }

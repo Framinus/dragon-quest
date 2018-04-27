@@ -5,7 +5,7 @@ import { addToUserDragons, clearMergingDragons, clearNewDragon, getAllDragons, r
 import { chooseRandomFrom, generateRandomNumber, nextLevelStatValue } from '../helpers';
 import MergingDragons from './mergingDragons';
 import NewDragon from './newdragon';
-import './merge_container.css';
+import '../style/merge_container.css';
 
 class MergeContainer extends Component {
   constructor(props) {
