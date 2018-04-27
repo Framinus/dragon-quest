@@ -223,14 +223,14 @@ export function saveHuman(human) {
 * saves the stats of a human after being damaged in battle to the human key in the store.
 *
 * @param {object} human - representing the human being saved.
-* @returns {object} - with the type of action and the human object being passed in.
+* @returns {object} - with the type of action and the hp (number) being passed in.
 *
 */
 
-export function updateHumanHP(humanHP) {
+export function updateHumanHP(hp) {
   return {
     type: UPDATE_HUMAN_HP,
-    payload: humanHP,
+    payload: hp,
   }
 }
 
@@ -238,13 +238,13 @@ export function updateHumanHP(humanHP) {
 * saves the stats of a dragon after being damaged in battle to the fightingDragon key in the store.
 *
 * @param {object} dragon - representing the dragon being saved.
-* @returns {object} - with the type of action and the dragon object being passed in.
+* @returns {object} - with the type of action and a number representing new hit points passed in.
 *
 */
 
-export function updateDragonHP(dragonHP) {
+export function updateDragonHP(hp) {
   return {
     type: UPDATE_DRAGON_HP,
-    payload: dragonHP,
+    payload: hp,
   }
 }

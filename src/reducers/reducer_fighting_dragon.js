@@ -7,7 +7,7 @@ export default function(state={}, action) {
     case FIGHTING_DRAGON:
       return action.payload
     case UPDATE_DRAGON_HP:
-      return Object.assign({}, state, {currenthp: action.payload})
+      return { ...state, currenthp: action.payload }
     default: return state
   }
 }

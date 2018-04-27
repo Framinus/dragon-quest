@@ -40,13 +40,4 @@ describe('App component', () => {
     expect(wrapper.find('.MainView')).toHaveLength(1);
   });
 
-  it('should match its empty snapshot', () => {
-    const tree = renderer.create(
-      <Provider store={createStoreWithMiddleware} >
-        <ConnectedApp />
-      </Provider>
-    ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
 })

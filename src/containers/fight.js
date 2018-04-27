@@ -25,8 +25,6 @@ class Fight extends Component {
     this.displayWinnerMessage = this.displayWinnerMessage.bind(this);
     this.enterBattle = this.enterBattle.bind(this);
     this.levelUpHuman = this.levelUpHuman.bind(this);
-    this.updateDragonStats = this.updateDragonStats.bind(this);
-    this.updateHumanStats = this.updateHumanStats.bind(this);
   }
 
   componentDidMount() {
@@ -66,22 +64,28 @@ class Fight extends Component {
     let newHP = hp - damage;
     // if the player is the dragon, take the hit points off the human.
     if (player === 'dragon') {
-      this.updateHumanStats(newHP);
-      // if the new hp of the human is greater than zero, change the turn to the human's.
-      if (newHP > 0) {
-        this.battleTurn(this.props.fightingDragon.currenthp, damageToDragon, 'human');
-        // if the hp of the human is zero or less, call battle is won with the dragon.
-      } else {
-        this.battleIsWon('dragon');
-      }
+      // this function needs to be wrapped in a promise to avoid race conditions.
+      return this.updatePlayerStats(newHP, this.props.updateHumanHP)
+        .then(() => {
+          // if the new hp of the human is greater than zero, change the turn to the human's.
+          if (newHP > 0) {
+            this.battleTurn(this.props.fightingDragon.currenthp, damageToDragon, 'human');
+            // if the hp of the human is zero or less, call battle is won with the dragon.
+          } else {
+            this.battleIsWon('dragon');
+          }
+        })
     } else {
-      // if the player is the human, update the dragon's hp.
-      this.updateDragonStats(newHP);
-      if (newHP > 0) {
-        this.battleTurn(this.props.human.currenthp, damageToHuman, 'dragon');
-      } else {
-        this.battleIsWon('human');
-      }
+      return this.updatePlayerStats(newHP, this.props.updateDragonHP)
+        .then(() => {
+          // if the player is the human, update the dragon's hp.
+          this.props.updateDragonHP(newHP);
+          if (newHP > 0) {
+            this.battleTurn(this.props.human.currenthp, damageToHuman, 'dragon');
+          } else {
+            this.battleIsWon('human');
+          }
+        })
     }
   };
 
@@ -103,7 +107,7 @@ class Fight extends Component {
       const dragonRestoredHP = this.props.fightingDragon.maxhp;
       this.props.fightingDragon.currenthp = dragonRestoredHP;
       let restoredHumanHP = this.props.human.maxhp;
-      this.updateHumanStats(restoredHumanHP);
+      this.props.updateHumanHP(restoredHumanHP);
     }
   };
 
@@ -167,32 +171,12 @@ class Fight extends Component {
     return newHuman;
   };
 
-
-  /**
-  * @function updateDragonStats - creates a new dragon object with updated hp and passes it to a redux action creator that updates those stats in the store.
-  * @returns {undefined} - function calls another function and returns nothing.
-  */
-
-  // updateDragonStats(hp) {
-  //   const dragonAfterDamage = Object.assign(this.props.fightingDragon, {currenthp: hp});
-  //   this.props.updateDragon(dragonAfterDamage);
-  // };
-
-  updateDragonStats(hp) {
-    this.props.updateDragonHP(hp);
+  updatePlayerStats(hp, func) {
+    return new Promise((resolve, reject) => {
+      func(hp);
+      resolve();
+    });
   }
-
-
-  /**
-  * @function updateHumanStats - creates a new human object with updated hp and passes it to a redux action creator that updates those stats in the store.
-  * @returns {undefined} - function calls another function and returns nothing.
-  */
-
-  updateHumanStats(hp) {
-    this.props.updateHumanHP(hp);
-  };
-
-  // View functions:
 
   /**
   * @function changeActiveCard - changes background of active card to green.
@@ -283,7 +267,7 @@ Fight.propTypes = {
   gameOver: PropTypes.bool,
   human: PropTypes.object,
   saveHuman: PropTypes.func,
-  updateDragonHP: PropTypes.func,
+  updateDragon: PropTypes.func,
   updateHumanHP: PropTypes.func,
 }
 
@@ -291,4 +275,4 @@ function mapStateToProps({ fightingDragon, human}) {
   return { fightingDragon, human };
 };
 
-export default connect(mapStateToProps, { callHuman, clearFightingDragon, saveHuman, updateDragonHP, updateHumanHP})(Fight);
+export default connect(mapStateToProps, { callHuman, clearFightingDragon, saveHuman, updateDragonHP, updateHumanHP })(Fight);

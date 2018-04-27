@@ -26,14 +26,4 @@ describe('MainView component', () => {
     expect(wrapper.is('.main-view-container')).toBe(true);
   });
 
-  it('should match its empty snapshot', () => {
-    const tree = renderer.create(
-      <Provider store={createStoreWithMiddleware} >
-        <MainView />
-      </Provider>
-    ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
 })

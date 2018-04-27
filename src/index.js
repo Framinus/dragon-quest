@@ -16,8 +16,7 @@ const createStoreWithMiddleware = createStore(
     applyMiddleware(promise),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
-)
-// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
@@ -25,7 +24,3 @@ ReactDOM.render(
 </Provider>, document.getElementById('root')
 );
 registerServiceWorker();
-
-// (reducers,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// )
